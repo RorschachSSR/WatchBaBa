@@ -41,7 +41,7 @@ try
         [imgHeight, imgWidth, ~] = size(guidance);
         [texHeight, texWidth] = Screen('WindowSize', guidanceIndex);
         % scaling ration
-        scale = 0.4;
+        scale = 0.3;
         % get the size & location of the image
         dstRect = [0 0 imgWidth imgHeight] .* scale;
         dstRect = CenterRectOnPoint(dstRect, cx, cy);
@@ -62,12 +62,17 @@ try
     for i = 1:4
         tag=0;
         % Open video
-        [mwindow,time,fps,w,h,zhenshu]=Screen('OpenMovie',window,practiceList(:,:,i));
+        [mwindow,time,fps,w,h]=Screen('OpenMovie',window,practiceList(:,:,i));
         % end point
         te=time;
         % set the start point
         Screen('SetMovieTimeIndex',mwindow,0);
         screenrect=[0,0,w,h];
+        % scaling ration
+        scale = 0.7;
+        % get the size & location of the image
+        scrRect = screenrect .* scale;
+        scrRect = CenterRectOnPoint(scrRect, cx, cy);
         Screen('PlayMovie',mwindow,1,0,0);
         t1=GetSecs;
         while(GetSecs-t1<te)
@@ -75,7 +80,7 @@ try
             if(tex<=0)
                 break;
             end
-            Screen('DrawTexture',window,tex,screenrect);
+            Screen('DrawTexture',window,tex,[],scrRect);
             Screen('Close',tex);
             [keyisdown,~,keycode]=KbCheck;
             if(keyisdown && keycode(space))
@@ -97,8 +102,14 @@ try
         Screen('PlayMovie',mwindow,0);
         Screen('CloseMovie',mwindow);
         % Replay the video
-        [mwindow,time,fps,w,h,zhenshu]=Screen('OpenMovie',window,practiceList(:,:,i));
+        [mwindow,time,fps,w,h]=Screen('OpenMovie',window,practiceList(:,:,i));
         Screen('SetMovieTimeIndex',mwindow,0 );
+        screenrect = [0,0,w,h];
+        % scaling ration
+        scale = 0.7;
+        % get the size & location of the image
+        scrRect = screenrect .* scale;
+        scrRect = CenterRectOnPoint(scrRect, cx, cy);
         Screen('PlayMovie',mwindow,1,0,0);
         rest_1 = imread('rest_1.png');
         rest_1Index = Screen('MakeTexture',window,rest_1);
@@ -106,7 +117,7 @@ try
         [imgHeight, imgWidth, ~] = size(rest_1);
         [texHeight, texWidth] = Screen('WindowSize', rest_1Index);
         % scaling ration
-        scale = 0.5;
+        scale = 0.3;
         % get the size & location of the image
         dstRect = [0 0 imgWidth imgHeight] .* scale;
         dstRect = CenterRectOnPoint(dstRect, cx, cy);
@@ -114,7 +125,7 @@ try
         Screen('DrawTexture',window,rest_1Index,[], dstRect);
         % time to flip
         Screen('Flip',window);
-        WaitSecs(7);
+        WaitSecs(3);
         % show crosshair to start
         Screen('DrawLine',window,[255 255 255],cx-30,cy,cx+30,cy,4);         
         Screen('DrawLine',window,[255 255 255],cx,cy-30,cx,cy+30,4);
@@ -126,7 +137,7 @@ try
             if(tex<=0)
                 break;
             end
-            Screen('DrawTexture',window,tex,screenrect);
+            Screen('DrawTexture',window,tex,[],scrRect);
             Screen('Close',tex);
             Screen('Flip',window);
             [keyisdown,~,keycode]=KbCheck;
@@ -154,7 +165,7 @@ try
             [imgHeight, imgWidth, ~] = size(rest_2);
             [texHeight, texWidth] = Screen('WindowSize', rest_2Index);
             % scaling ration
-            scale = 0.5;
+            scale = 0.3;
             % get the size & location of the image
             dstRect = [0 0 imgWidth imgHeight] .* scale;
             dstRect = CenterRectOnPoint(dstRect, cx, cy);
@@ -162,7 +173,7 @@ try
             Screen('DrawTexture',window,rest_2Index,[], dstRect);
             % time to flip
             Screen('Flip',window);
-            WaitSecs(9);
+            WaitSecs(5);
             % show crosshair to start
             Screen('DrawLine',window,[255 255 255],cx-30,cy,cx+30,cy,4);
             Screen('DrawLine',window,[255 255 255],cx,cy-30,cx,cy+30,4);
@@ -196,7 +207,7 @@ try
     Screen('DrawLine',window,[255 255 255],cx-30,cy,cx+30,cy,4);
     Screen('DrawLine',window,[255 255 255],cx,cy-30,cx,cy+30,4);
     Screen('Flip',window);
-     WaitSecs(1);
+    WaitSecs(1);
 %% play videos
     for i = 1: video_N
         % set the start of points
@@ -206,12 +217,17 @@ try
         % start point
         ts=0;
         % Open video
-        [mwindow,time,fps,w,h,zhenshu]=Screen('OpenMovie',window,videoList(:,:,i));
+        [mwindow,time,fps,w,h]=Screen('OpenMovie',window,videoList(:,:,i));
         % end point
         te=time;
         % set the start point
         Screen('SetMovieTimeIndex',mwindow,ts);
         screenrect=[0,0,w,h];
+        % scaling ration
+        scale = 0.7;
+        % get the size & location of the image
+        scrRect = screenrect .* scale;
+        scrRect = CenterRectOnPoint(scrRect, cx, cy);
         Screen('PlayMovie',mwindow,1,0,0);
         t1=GetSecs;
         while(GetSecs-t1<te-ts)
@@ -219,7 +235,7 @@ try
             if(tex<=0)
                 break;
             end
-            Screen('DrawTexture',window,tex,screenrect);
+            Screen('DrawTexture',window,tex,[],scrRect);
             Screen('Close',tex);
             Screen('Flip',window);
             [keyisdown,~,keycode]=KbCheck;
@@ -247,6 +263,12 @@ try
         % Replay the video
         [mwindow,time,fps,w,h,zhenshu]=Screen('OpenMovie',window,videoList(:,:,i));
         Screen('SetMovieTimeIndex',mwindow,ts);
+        screenrect = [0,0,w,h];
+        % scaling ration
+        scale = 0.7;
+        % get the size & location of the image
+        scrRect = screenrect .* scale;
+        scrRect = CenterRectOnPoint(scrRect, cx, cy);
         Screen('PlayMovie',mwindow,1,0,0);
         point_i=1;
         rest_1 = imread('rest_1.png');
@@ -255,7 +277,7 @@ try
         [imgHeight, imgWidth, ~] = size(rest_1);
         [texHeight, texWidth] = Screen('WindowSize', rest_1Index);
         % scaling ration
-        scale = 0.5;
+        scale = 0.3;
         % get the size & location of the image
         dstRect = [0 0 imgWidth imgHeight] .* scale;
         dstRect = CenterRectOnPoint(dstRect, cx, cy);
@@ -263,7 +285,7 @@ try
         Screen('DrawTexture',window,rest_1Index,[], dstRect);
         % time to flip
         Screen('Flip',window);
-        WaitSecs(7);
+        WaitSecs(3);
         % show crosshair to start
         Screen('DrawLine',window,[255 255 255],cx-30,cy,cx+30,cy,4);
         Screen('DrawLine',window,[255 255 255],cx,cy-30,cx,cy+30,4);
@@ -275,7 +297,7 @@ try
             if(tex<=0)
                 break;
             end
-            Screen('DrawTexture',window,tex,screenrect);
+            Screen('DrawTexture',window,tex,[], scrRect);
             Screen('Close',tex);
             Screen('Flip',window);
             [keyisdown,~,keycode]=KbCheck;
@@ -308,7 +330,7 @@ try
             [imgHeight, imgWidth, ~] = size(rest_2);
             [texHeight, texWidth] = Screen('WindowSize', rest_2Index);
             % scaling ration
-            scale = 0.5;
+            scale = 0.3;
             % get the size & location of the image
             dstRect = [0 0 imgWidth imgHeight] .* scale;
             dstRect = CenterRectOnPoint(dstRect, cx, cy);
@@ -316,7 +338,7 @@ try
             Screen('DrawTexture',window,rest_2Index,[], dstRect);
             % time to flip
             Screen('Flip',window);
-            WaitSecs(9);
+            WaitSecs(5);
             % show crosshair to start
             Screen('DrawLine',window,[255 255 255],cx-30,cy,cx+30,cy,4);
             Screen('DrawLine',window,[255 255 255],cx,cy-30,cx,cy+30,4);
