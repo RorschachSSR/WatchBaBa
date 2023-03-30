@@ -6,6 +6,7 @@ dims = [1 80];
 answer=inputdlg(prompt,dlgtitle,dims);
 ID = char(answer(1));
 Gaming_exp = char(answer(2));
+T=zeros(1,10000);
 try
 %% Prepration
     % Check if Psychtoolbox is properly installed:
@@ -75,8 +76,12 @@ try
         scrRect = CenterRectOnPoint(scrRect, cx, cy);
         Screen('PlayMovie',mwindow,1,0,0);
         t1=GetSecs;
+        n=1;
         while(GetSecs-t1<te)
+            tic
             tex=Screen('GetMovieImage',window,mwindow,[],[],2);
+            T(n)=toc;
+            n=n+1;
             if(tex<=0)
                 break;
             end
@@ -293,13 +298,7 @@ try
         WaitSecs(1);
         t1=GetSecs;
         while(GetSecs-t1<te-ts)
-            tex=Screen('GetMovieImage',window,mwindow,[],[],2);
-            if(tex<=0)
-                break;
-            end
-            Screen('DrawTexture',window,tex,[], scrRect);
-            Screen('Close',tex);
-            Screen('Flip',window);
+             
             [keyisdown,~,keycode]=KbCheck;
             if(keyisdown && keycode(space))
                 splitPoint_2(i,point_i)=Screen('GetMovieTimeIndex', mwindow);

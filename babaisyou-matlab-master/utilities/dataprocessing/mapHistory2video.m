@@ -66,7 +66,7 @@ function outputfile = mapHistory2video(exp_date, name, rate, varargin)
     switch replaytype
         case 0
             % constant rate: 0.125 between each operation, each operation takes one frame
-            v.FrameRate = 4;
+            v.FrameRate = 8;
         case 1
             % scaled rate: 4x speed of real time
             % each frame takes 1/16 secs
@@ -88,6 +88,7 @@ function outputfile = mapHistory2video(exp_date, name, rate, varargin)
             case 0
                 renderMap(mapHistory(i), ax);
                 frame = getframe(f);
+                writeVideo(v, frame);
                 writeVideo(v, frame);
                 cla(ax);
             case 1
