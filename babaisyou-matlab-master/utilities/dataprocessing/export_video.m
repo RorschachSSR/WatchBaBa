@@ -4,7 +4,7 @@ P = readtable('data/participants.csv');
 P = sortrows(P, 'SubNo');
 initUtility;
 
-for id = 1:1%height(P)
+for id = 1:5%height(P)
     inputfile = sprintf('data/player_map_analyzed/map_logic_%d_%s.mat', P.Date(id), P.Name{id});
     load(inputfile, 'mapHistory');
     minchp=mapHistory(1).Chapter;
@@ -16,11 +16,11 @@ for id = 1:1%height(P)
             case 1
                 lvlrange=[0,1,2,3,4];
             case 2
-                leverange=[0,1,2];
+                lvlrange=[0,1,2];
         end
         for lvl = min(lvlrange):max(lvlrange)
-            logicalArray = [mapHistory(:).Chapter] == chp-1 ...
-                            & [mapHistory(:).Level] == lvl-1;
+            logicalArray = [mapHistory(:).Chapter] == chp ...
+                            & [mapHistory(:).Level] == lvl;
             if ~any(logicalArray)
                 continue;
             else

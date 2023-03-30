@@ -75,8 +75,9 @@ function outputfile = mapHistory2video(exp_date, name, rate, varargin)
     
     open(v);
 
-    f = figure('Position', [100, 100, 1920/2, 1080/2], 'visible', 'on');
+    f = figure('Position', [100, 100, 1920/2, 1080/2], 'visible', 'off');
     axis ij
+    set(gca,'xtick',[],'ytick',[],'xcolor','w','ycolor','w');
     set(gca,'nextplot','replacechildren'); 
     ax = gca;
     total_frame = 0;
@@ -88,8 +89,9 @@ function outputfile = mapHistory2video(exp_date, name, rate, varargin)
             case 0
                 renderMap(mapHistory(i), ax);
                 frame = getframe(f);
-                writeVideo(v, frame);
-                writeVideo(v, frame);
+                for t =1 : 2
+                    writeVideo(v, frame);
+                end
                 cla(ax);
             case 1
                 current_t = mapHistory(i).TimeFromLaunch;

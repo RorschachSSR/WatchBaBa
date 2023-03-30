@@ -6,7 +6,6 @@ dims = [1 80];
 answer=inputdlg(prompt,dlgtitle,dims);
 ID = char(answer(1));
 Gaming_exp = char(answer(2));
-T=zeros(1,10000);
 try
 %% Prepration
     % Check if Psychtoolbox is properly installed:
@@ -14,9 +13,10 @@ try
     % get the video list and variable to store data
     video_N = 12; % the number of videos to be watched
     videoList = generate_order(video_N); % generate the video list
-    practiceList = practiceList(4); % generate the prectice List
+    practiceList = practiceList(3); % generate the prectice List
     splitPoint_1 = zeros(video_N,1000);
     splitPoint_2 = zeros(video_N,1000);
+    video_time = zeros(1,N);
     % Initialize with unified keynames and normalized colorspace:
     KbName('UnifyKeyNames')
     esc=KbName('escape');
@@ -70,7 +70,7 @@ try
         Screen('SetMovieTimeIndex',mwindow,0);
         screenrect=[0,0,w,h];
         % scaling ration
-        scale = 0.7;
+        scale = 1;
         % get the size & location of the image
         scrRect = screenrect .* scale;
         scrRect = CenterRectOnPoint(scrRect, cx, cy);
@@ -111,7 +111,7 @@ try
         Screen('SetMovieTimeIndex',mwindow,0 );
         screenrect = [0,0,w,h];
         % scaling ration
-        scale = 0.7;
+        scale = 1;
         % get the size & location of the image
         scrRect = screenrect .* scale;
         scrRect = CenterRectOnPoint(scrRect, cx, cy);
@@ -223,13 +223,14 @@ try
         ts=0;
         % Open video
         [mwindow,time,fps,w,h]=Screen('OpenMovie',window,videoList(:,:,i));
+        video_time(i)=time;
         % end point
         te=time;
         % set the start point
         Screen('SetMovieTimeIndex',mwindow,ts);
         screenrect=[0,0,w,h];
         % scaling ration
-        scale = 0.7;
+        scale = 1;
         % get the size & location of the image
         scrRect = screenrect .* scale;
         scrRect = CenterRectOnPoint(scrRect, cx, cy);
@@ -270,7 +271,7 @@ try
         Screen('SetMovieTimeIndex',mwindow,ts);
         screenrect = [0,0,w,h];
         % scaling ration
-        scale = 0.7;
+        scale = 1;
         % get the size & location of the image
         scrRect = screenrect .* scale;
         scrRect = CenterRectOnPoint(scrRect, cx, cy);
@@ -347,6 +348,7 @@ try
     end
     %% clean and save the data
     splitPoint.video = videoList;
+    splitPoint.time = video_time;
     splitPoint.the_coarse = splitPoint_1;
     splitPoint.the_fine = splitPoint_2;
     save([cd '\SAVE\' ID '_' Gaming_exp '_SplitPoint.mat'],'splitPoint');
