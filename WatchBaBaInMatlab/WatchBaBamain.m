@@ -16,7 +16,7 @@ try
     practiceList = practiceList(3); % generate the prectice List
     splitPoint_1 = zeros(video_N,1000);
     splitPoint_2 = zeros(video_N,1000);
-    video_time = zeros(1,N);
+    video_time = zeros(1,video_N);
     % Initialize with unified keynames and normalized colorspace:
     KbName('UnifyKeyNames')
     esc=KbName('escape');
@@ -76,12 +76,8 @@ try
         scrRect = CenterRectOnPoint(scrRect, cx, cy);
         Screen('PlayMovie',mwindow,1,0,0);
         t1=GetSecs;
-        n=1;
         while(GetSecs-t1<te)
-            tic
             tex=Screen('GetMovieImage',window,mwindow,[],[],2);
-            T(n)=toc;
-            n=n+1;
             if(tex<=0)
                 break;
             end

@@ -24,8 +24,8 @@ for i = 1 : length(filedir)
        coarse_split = split_in_bins(splitPoint.the_coarse(j,:),videotime);
        fine_split = split_in_bins(splitPoint.the_fine(j,:),videotime);
        load([groupfiledir(i).folder '\' groupfiledir(i).name]);
-       coarse_r=corr(coarse_split',groupSplit.coarse');
-       fine_r=corr(fine_split',groupSplit.fine');
+       coarse_r=corr(coarse_split',groupSplit.coarse(1:length(coarse_split))');
+       fine_r=corr(fine_split',groupSplit.fine(1:length(coarse_split))');
        [coarse_r_min,coarse_r_max]=get_r(groupSplit.coarse,sum(coarse_split));
        [fine_r_min,fine_r_max]=get_r(groupSplit.fine,sum(fine_split));
        coarse_seg_agree(i,video_no)=(coarse_r-coarse_r_min)/(coarse_r_max-coarse_r_min);
