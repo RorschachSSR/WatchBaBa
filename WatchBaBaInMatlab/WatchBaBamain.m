@@ -11,8 +11,8 @@ try
     % Check if Psychtoolbox is properly installed:
     AssertOpenGL;
     % get the video list and variable to store data
-    video_N = 12; % the number of videos to be watched
-    videoList = generate_order(video_N); % generate the video list
+    video_N =  1; % the number of videos to be watched
+    videoList = generate_order( video_N); % generate the video list
     practiceList = practiceList(3); % generate the prectice List
     splitPoint_1 = zeros(video_N,1000);
     splitPoint_2 = zeros(video_N,1000);
@@ -60,8 +60,9 @@ try
     end
     
 %% practice
-    for i = 1:4
+    for i = 1:3
         tag=0;
+        press_tag=0;
         % Open video
         [mwindow,time,fps,w,h]=Screen('OpenMovie',window,practiceList(:,:,i));
         % end point
@@ -83,17 +84,29 @@ try
             end
             Screen('DrawTexture',window,tex,[],scrRect);
             Screen('Close',tex);
-            [keyisdown,~,keycode]=KbCheck;
-            if(keyisdown && keycode(space))
-                % show crosshair to react
-                Screen('DrawLine',window,[255 255 255],cx-30,30,cx+30,30,4);
-                Screen('DrawLine',window,[255 255 255],cx,0,cx,60,4);
-            elseif(keyisdown && keycode(esc))
-                tag=1;
+            vbl=Screen('Flip',window);
+            
+            while GetSecs<vbl+1/fps
+                [keyisdown,~,keycode]=KbCheck;
+                if(keyisdown && keycode(space))
+                    % show crosshair to react
+                    if press_tag == 0
+                        Screen('DrawLine',window,[255 255 255],cx-30,30,cx+30,30,4);
+                        Screen('DrawLine',window,[255 255 255],cx,0,cx,60,4);
+                        press_tag=1;
+                        break;
+                    end
+                elseif(keyisdown && keycode(esc))
+                    tag=1;
+                    break;
+                end
+            end
+            
+            [press_tag,~,keycode]=KbCheck;
+            
+            if(tag==1)
                 break;
             end
-            Screen('Flip',window);
-            
         end
         if(tag==1)
             Screen('PlayMovie',mwindow,0);
@@ -103,6 +116,8 @@ try
         Screen('PlayMovie',mwindow,0);
         Screen('CloseMovie',mwindow);
         % Replay the video
+        tag=0;
+        press_tag=0;
         [mwindow,time,fps,w,h]=Screen('OpenMovie',window,practiceList(:,:,i));
         Screen('SetMovieTimeIndex',mwindow,0 );
         screenrect = [0,0,w,h];
@@ -140,14 +155,28 @@ try
             end
             Screen('DrawTexture',window,tex,[],scrRect);
             Screen('Close',tex);
-            Screen('Flip',window);
-            [keyisdown,~,keycode]=KbCheck;
-            if(keyisdown && keycode(space))
-                % show crosshair to react
-                Screen('DrawLine',window,[255 255 255],cx-30,30,cx+30,30,4);
-                Screen('DrawLine',window,[255 255 255],cx,0,cx,60,4);
-            elseif(keyisdown && keycode(esc))
-                tag=1;
+            
+            vbl=Screen('Flip',window);
+            
+            while GetSecs<vbl+1/fps
+                [keyisdown,~,keycode]=KbCheck;
+                if(keyisdown && keycode(space))
+                    % show crosshair to react
+                    if press_tag == 0
+                        Screen('DrawLine',window,[255 255 255],cx-30,30,cx+30,30,4);
+                        Screen('DrawLine',window,[255 255 255],cx,0,cx,60,4);
+                        press_tag=1;
+                        break;
+                    end
+                elseif(keyisdown && keycode(esc))
+                    tag=1;
+                    break;
+                end
+            end
+            
+            [press_tag,~,keycode]=KbCheck;
+            
+            if(tag==1)
                 break;
             end
         end
@@ -174,12 +203,20 @@ try
             Screen('DrawTexture',window,rest_2Index,[], dstRect);
             % time to flip
             Screen('Flip',window);
-            WaitSecs(5);
+            
+            while 1
+                [keyisdown,~,keycode]=KbCheck;
+                if(keyisdown && keycode(space))
+                    break;
+                end
+            end
+            
             % show crosshair to start
             Screen('DrawLine',window,[255 255 255],cx-30,cy,cx+30,cy,4);
             Screen('DrawLine',window,[255 255 255],cx,cy-30,cx,cy+30,4);
             Screen('Flip',window);
             WaitSecs(1);
+        
         end
     end
 %% between practice & formal exp    
@@ -215,6 +252,7 @@ try
         point_i=1;
         % index for abort
         tag=0;
+        press_tag=0;
         % start point
         ts=0;
         % Open video
@@ -232,37 +270,54 @@ try
         scrRect = CenterRectOnPoint(scrRect, cx, cy);
         Screen('PlayMovie',mwindow,1,0,0);
         t1=GetSecs;
-        while(GetSecs-t1<te-ts)
+        while(GetSecs-t1<te)
             tex=Screen('GetMovieImage',window,mwindow,[],[],2);
             if(tex<=0)
                 break;
             end
             Screen('DrawTexture',window,tex,[],scrRect);
             Screen('Close',tex);
-            Screen('Flip',window);
-            [keyisdown,~,keycode]=KbCheck;
-            if(keyisdown && keycode(space))
-                splitPoint_1(i,point_i)=Screen('GetMovieTimeIndex', mwindow);
-                point_i=point_i+1;
-                % show crosshair to react
-                Screen('DrawLine',window,[255 255 255],cx-30,30,cx+30,30,4);
-                Screen('DrawLine',window,[255 255 255],cx,0,cx,60,4);
-            elseif(keyisdown && keycode(esc))
-                tag=1;
+            
+            vbl=Screen('Flip',window);
+            
+            while GetSecs<vbl+1/fps
+                [keyisdown,~,keycode]=KbCheck;
+                if(keyisdown && keycode(space))
+                    % show crosshair to react
+                    if press_tag == 0
+                        splitPoint_1(i,point_i)=Screen('GetMovieTimeIndex', mwindow);
+                        point_i=point_i+1;
+                        Screen('DrawLine',window,[255 255 255],cx-30,30,cx+30,30,4);
+                        Screen('DrawLine',window,[255 255 255],cx,0,cx,60,4);
+                        press_tag=1;
+                        break;
+                    end
+                elseif(keyisdown && keycode(esc))
+                    tag=1;
+                    break;
+                end
+            end
+            
+            [press_tag,~,keycode]=KbCheck;
+            
+            if(tag==1)
                 break;
             end
         end
+        
         if(tag==1)
             Screen('PlayMovie',mwindow,0);
             Screen ('CloseMovie',mwindow);
             break;
         end
-        if(splitPoint_1(i,point_i-1)<te-0.5)
+        if(point_i==1||splitPoint_1(i,point_i-1)<te-0.5)
             splitPoint_1(i,point_i)=te;
         end
         Screen('PlayMovie',mwindow,0);
         Screen('CloseMovie',mwindow);
         % Replay the video
+        tag=0;
+        press_tag=0;
         [mwindow,time,fps,w,h,zhenshu]=Screen('OpenMovie',window,videoList(:,:,i));
         Screen('SetMovieTimeIndex',mwindow,ts);
         screenrect = [0,0,w,h];
@@ -294,32 +349,47 @@ try
         Screen('Flip',window);
         WaitSecs(1);
         t1=GetSecs;
-        while(GetSecs-t1<te-ts)
+        while(GetSecs-t1<te)
             tex=Screen('GetMovieImage',window,mwindow,[],[],2);
             if(tex<=0)
                 break;
             end
             Screen('DrawTexture',window,tex,[],scrRect);
             Screen('Close',tex);
-            Screen('Flip',window);
-            [keyisdown,~,keycode]=KbCheck;
-            if(keyisdown && keycode(space))
-                splitPoint_2(i,point_i)=Screen('GetMovieTimeIndex', mwindow);
-                point_i=point_i+1;
-                % show crosshair to react
-                Screen('DrawLine',window,[255 255 255],cx-30,30,cx+30,30,4);
-                Screen('DrawLine',window,[255 255 255],cx,0,cx,60,4);
-            elseif(keyisdown && keycode(esc))
-                tag=1;
+            
+            vbl=Screen('Flip',window);
+            
+            while GetSecs<vbl+1/fps
+                [keyisdown,~,keycode]=KbCheck;
+                if(keyisdown && keycode(space))
+                    % show crosshair to react
+                    if press_tag == 0
+                        splitPoint_1(i,point_i)=Screen('GetMovieTimeIndex', mwindow);
+                        point_i=point_i+1;
+                        Screen('DrawLine',window,[255 255 255],cx-30,30,cx+30,30,4);
+                        Screen('DrawLine',window,[255 255 255],cx,0,cx,60,4);
+                        press_tag=1;
+                        break;
+                    end
+                elseif(keyisdown && keycode(esc))
+                    tag=1;
+                    break;
+                end
+            end
+            
+            [press_tag,~,keycode]=KbCheck;
+            
+            if(tag==1)
                 break;
             end
         end
+        
         if(tag==1)
             Screen('PlayMovie',mwindow,0);
             Screen ('CloseMovie',mwindow);
             break;
         end
-        if(splitPoint_2(i,point_i-1)<te-0.5)
+        if(point_i==1||splitPoint_2(i,point_i-1)<te-0.5)
             splitPoint_2(i,point_i)=te;
         end
         Screen('PlayMovie',mwindow,0);
@@ -340,7 +410,12 @@ try
             Screen('DrawTexture',window,rest_2Index,[], dstRect);
             % time to flip
             Screen('Flip',window);
-            WaitSecs(5);
+            while 1
+                [keyisdown,~,keycode]=KbCheck;
+                if(keyisdown && keycode(space))
+                    break;
+                end
+            end
             % show crosshair to start
             Screen('DrawLine',window,[255 255 255],cx-30,cy,cx+30,cy,4);
             Screen('DrawLine',window,[255 255 255],cx,cy-30,cx,cy+30,4);
