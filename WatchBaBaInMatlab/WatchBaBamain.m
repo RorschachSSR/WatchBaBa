@@ -295,7 +295,13 @@ try
         WaitSecs(1);
         t1=GetSecs;
         while(GetSecs-t1<te-ts)
-             
+            tex=Screen('GetMovieImage',window,mwindow,[],[],2);
+            if(tex<=0)
+                break;
+            end
+            Screen('DrawTexture',window,tex,[],scrRect);
+            Screen('Close',tex);
+            Screen('Flip',window);
             [keyisdown,~,keycode]=KbCheck;
             if(keyisdown && keycode(space))
                 splitPoint_2(i,point_i)=Screen('GetMovieTimeIndex', mwindow);
