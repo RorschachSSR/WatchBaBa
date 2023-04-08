@@ -25,6 +25,7 @@ try
     PsychDefaultSetup(2);
     HideCursor;
     InitializeMatlabOpenGL;
+    InitializePsychSound(1);
 %% Open window and show guidence
     % open the window
     [window,rect]=Screen('OpenWindow',0,[0 0 0]); 
@@ -33,7 +34,11 @@ try
     % prepare for play video
     flipInterval=Screen('GetFlipInterval',window);
     slack=flipInterval/2;
-    
+    % prepare for the sound
+    [wavdata, wavrate] = audioread('sound.wav');
+    wavdata = wavdata';
+    pahandle = PsychPortAudio('Open', [], [], 0, wavrate, 2);
+    PsychPortAudio('FillBuffer', pahandle, wavdata);
     % prepare for guidence
     for i=1:3
         guidance = imread(['guideline_' num2str(i) '.png']);
@@ -54,14 +59,7 @@ try
             while 1
                 [keyisdown,~,keycode]=KbCheck;
                 if(keyisdown && keycode(space))
-                        Screen('DrawLine',window,[255 255 255],0,0,2*cx,0,10);
-                        Screen('DrawLine',window,[255 255 255],0,2*cy,2*cx,2*cy,10);
-                        Screen('DrawLine',window,[255 255 255],0,0,0,2*cy,10);
-                        Screen('DrawLine',window,[255 255 255],2*cx,0,2*cx,2*cy,10);
-                        Screen('DrawTexture',window,guidanceIndex,[], dstRect);
-                        vbl=Screen('Flip',window);
-                        Screen('DrawTexture',window,guidanceIndex,[], dstRect);
-                        Screen('Flip',window,vbl+0.1); 
+                        PsychPortAudio('Start', pahandle);
                         break;
                 end
             end
@@ -108,10 +106,7 @@ try
                 if(keyisdown && keycode(space))
                     % show crosshair to react
                     if press_tag == 0
-                        Screen('DrawLine',window,[255 255 255],0,0,2*cx,0,10);
-                        Screen('DrawLine',window,[255 255 255],0,2*cy,2*cx,2*cy,10);
-                        Screen('DrawLine',window,[255 255 255],0,0,0,2*cy,10);
-                        Screen('DrawLine',window,[255 255 255],2*cx,0,2*cx,2*cy,10);
+                        PsychPortAudio('Start', pahandle);
                         press_tag=1;
                         break;
                     end
@@ -187,10 +182,7 @@ try
                 if(keyisdown && keycode(space))
                     % show crosshair to react
                     if press_tag == 0
-                        Screen('DrawLine',window,[255 255 255],0,0,2*cx,0,10);
-                        Screen('DrawLine',window,[255 255 255],0,2*cy,2*cx,2*cy,10);
-                        Screen('DrawLine',window,[255 255 255],0,0,0,2*cy,10);
-                        Screen('DrawLine',window,[255 255 255],2*cx,0,2*cx,2*cy,10);
+                        PsychPortAudio('Start', pahandle);
                         press_tag=1;
                         break;
                     end
@@ -313,10 +305,7 @@ try
                     if press_tag == 0
                         splitPoint_1(i,point_i)=Screen('GetMovieTimeIndex', mwindow);
                         point_i=point_i+1;
-                        Screen('DrawLine',window,[255 255 255],0,0,2*cx,0,10);
-                        Screen('DrawLine',window,[255 255 255],0,2*cy,2*cx,2*cy,10);
-                        Screen('DrawLine',window,[255 255 255],0,0,0,2*cy,10);
-                        Screen('DrawLine',window,[255 255 255],2*cx,0,2*cx,2*cy,10);
+                        PsychPortAudio('Start', pahandle);
                         press_tag=1;
                         break;
                     end
@@ -399,10 +388,7 @@ try
                     if press_tag == 0
                         splitPoint_1(i,point_i)=Screen('GetMovieTimeIndex', mwindow);
                         point_i=point_i+1;
-                        Screen('DrawLine',window,[255 255 255],0,0,2*cx,0,10);
-                        Screen('DrawLine',window,[255 255 255],0,2*cy,2*cx,2*cy,10);
-                        Screen('DrawLine',window,[255 255 255],0,0,0,2*cy,10);
-                        Screen('DrawLine',window,[255 255 255],2*cx,0,2*cx,2*cy,10);
+                        PsychPortAudio('Start', pahandle);
                         press_tag=1;
                         break;
                     end
@@ -458,6 +444,8 @@ try
             WaitSecs(1);
         end
     end
+    PsychPortAudio('Stop', pahandle);
+    PsychPortAudio('Close', pahandle);
     %% clean and save the data
     splitPoint.video = videoList;
     splitPoint.time = video_time;
