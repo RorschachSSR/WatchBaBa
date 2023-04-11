@@ -50,7 +50,8 @@ function outputfile = mapHistory2video(exp_date, name, rate, varargin)
             end
             t0 = 1;
             tk = first_win;
-            outputfile = sprintf('data/video/scaled_rate_%d_%s_chp%dlvl%d', exp_date, name, chp, lvl);
+            [chp,lvl,idx] = get_video_name(exp_date,name,chp,lvl);
+            outputfile = sprintf('data/video/chp%d_lvl%d_%s', chp, lvl,idx);
             clear wins chp lvl first_win logicalArray;
         otherwise
             error('Wrong number of input arguments');
@@ -66,7 +67,7 @@ function outputfile = mapHistory2video(exp_date, name, rate, varargin)
     switch replaytype
         case 0
             % constant rate: 0.125 between each operation, each operation takes one frame
-            v.FrameRate = 8;
+            v.FrameRate = 4;
         case 1
             % scaled rate: 4x speed of real time
             % each frame takes 1/16 secs
@@ -75,9 +76,9 @@ function outputfile = mapHistory2video(exp_date, name, rate, varargin)
     
     open(v);
 
-    f = figure('Position', [100, 100, 1920/2, 1080/2], 'visible', 'off');
+    f = figure('Position', [100, 100, 1920/2, 1080/2], 'visible', 'off', 'color', 'k');
     axis ij
-    set(gca,'xtick',[],'ytick',[],'xcolor','w','ycolor','w');
+    set(gca,'xtick',[],'ytick',[],'xcolor','k','ycolor','k');
     set(gca,'nextplot','replacechildren'); 
     ax = gca;
     total_frame = 0;
@@ -89,9 +90,7 @@ function outputfile = mapHistory2video(exp_date, name, rate, varargin)
             case 0
                 renderMap(mapHistory(i), ax);
                 frame = getframe(f);
-                for t =1 : 2
-                    writeVideo(v, frame);
-                end
+                writeVideo(v, frame);
                 cla(ax);
             case 1
                 current_t = mapHistory(i).TimeFromLaunch;

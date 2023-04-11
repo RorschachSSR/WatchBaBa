@@ -3,7 +3,7 @@
 prompt = {'Creat your game ID:','Do you have any Game Experience before(1 for yes,0 for no):'};
 dlgtitle = 'Watch BaBa';
 dims = [1 80];
-answer=inputdlg(prompt,dlgtitle,dims);
+answer=inputdlg(prompt,dlgtitle,dims); 
 ID = char(answer(1));
 Gaming_exp = char(answer(2));
 try

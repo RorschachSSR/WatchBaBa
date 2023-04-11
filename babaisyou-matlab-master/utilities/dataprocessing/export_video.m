@@ -23,6 +23,8 @@ for id = 1:5%height(P)
                             & [mapHistory(:).Level] == lvl;
             if ~any(logicalArray)
                 continue;
+            elseif search_video(exp_date,name,chp,lvl))
+                continue;
             else
             fprintf('Clock: %s\n', datetime('now'));
             fprintf('-------Participant: %2d, %d, %s-------\n', id, P.Date(id), P.Name{id});

@@ -11,16 +11,18 @@ try
     % Check if Psychtoolbox is properly installed:
     AssertOpenGL;
     % get the video list and variable to store data
-    video_N =  4; % the number of videos to be watched
-    videoList = generate_order( video_N); % generate the video list
+    video_N =  15; % the number of videos to be watched
+    videoList = generate_order(video_N); % generate the video list
     practiceList = practiceList(3); % generate the prectice List
     splitPoint_1 = zeros(video_N,1000);
     splitPoint_2 = zeros(video_N,1000);
+    missingPoint = zeros(video_N,1000);
     video_time = zeros(1,video_N);
     % Initialize with unified keynames and normalized colorspace:
     KbName('UnifyKeyNames')
     esc=KbName('escape');
     space=KbName('space');
+    key_B=KbName('b');
     Screen('Preference', 'SkipSyncTests', 1);
     PsychDefaultSetup(2);
     HideCursor;
@@ -30,9 +32,8 @@ try
     % open the window
     [window,rect]=Screen('OpenWindow',0,[0 0 0]); 
     cx=rect(3)/2;
-    cy=rect(4)/2;
-    % prepare for play video
-    flipInterval=Screen('GetFlipInterval',window);
+    cy=rect(4)/2; 
+    flipInterval = Screen('GetFlipInterval',window);
     slack=flipInterval/2;
     % prepare for the sound
     [wavdata, wavrate] = audioread('sound.wav');
@@ -55,12 +56,17 @@ try
         Screen('DrawTexture',window,guidanceIndex,[], dstRect);
         % time to flip
         Screen('Flip',window);
-        if i==1
+        if(i==1)
+            space_flag=0;
             while 1
                 [keyisdown,~,keycode]=KbCheck;
                 if(keyisdown && keycode(space))
+                    if space_flag == 0
                         PsychPortAudio('Start', pahandle);
-                        break;
+                        space_flag=1;
+                    end
+                elseif space_flag==1
+                    break;
                 end
             end
         end
@@ -73,6 +79,11 @@ try
             end
         end
     end
+    % show crosshair to start
+    Screen('DrawLine',window,[255 255 255],cx-30,cy,cx+30,cy,4);         
+    Screen('DrawLine',window,[255 255 255],cx,cy-30,cx,cy+30,4);
+    Screen('Flip',window);
+    WaitSecs(1);
     
 %% practice
     for i = 1:3
@@ -104,7 +115,13 @@ try
             while GetSecs<vbl+1/fps
                 [keyisdown,~,keycode]=KbCheck;
                 if(keyisdown && keycode(space))
-                    % show crosshair to react
+                    % play sound to react
+                    if press_tag == 0
+                        PsychPortAudio('Start', pahandle);
+                        press_tag=1;
+                        break;
+                    end
+                elseif(keyisdown && keycode(key_B))
                     if press_tag == 0
                         PsychPortAudio('Start', pahandle);
                         press_tag=1;
@@ -180,7 +197,7 @@ try
             while GetSecs<vbl+1/fps
                 [keyisdown,~,keycode]=KbCheck;
                 if(keyisdown && keycode(space))
-                    % show crosshair to react
+                    % play sound to react
                     if press_tag == 0
                         PsychPortAudio('Start', pahandle);
                         press_tag=1;
@@ -268,6 +285,7 @@ try
     for i = 1: video_N
         % set the start of points
         point_i=1;
+        missing_i=1;
         % index for abort
         tag=0;
         press_tag=0;
@@ -301,10 +319,18 @@ try
             while GetSecs<vbl+1/fps
                 [keyisdown,~,keycode]=KbCheck;
                 if(keyisdown && keycode(space))
-                    % show crosshair to react
+                    % play sound to react
                     if press_tag == 0
                         splitPoint_1(i,point_i)=Screen('GetMovieTimeIndex', mwindow);
                         point_i=point_i+1;
+                        PsychPortAudio('Start', pahandle);
+                        press_tag=1;
+                        break;
+                    end
+                elseif(keyisdown && keycode(key_B))
+                    if press_tag == 0
+                        missingPoint(i,missing_i)=Screen('GetMovieTimeIndex', mwindow);
+                        missing_i=missing_i+1;
                         PsychPortAudio('Start', pahandle);
                         press_tag=1;
                         break;
@@ -384,7 +410,7 @@ try
             while GetSecs<vbl+1/fps
                 [keyisdown,~,keycode]=KbCheck;
                 if(keyisdown && keycode(space))
-                    % show crosshair to react
+                    % play sound to react
                     if press_tag == 0
                         splitPoint_1(i,point_i)=Screen('GetMovieTimeIndex', mwindow);
                         point_i=point_i+1;
@@ -451,6 +477,7 @@ try
     splitPoint.time = video_time;
     splitPoint.the_coarse = splitPoint_1;
     splitPoint.the_fine = splitPoint_2;
+    splitPoint.missingPoint=missingPoint;
     save([cd '\SAVE\' ID '_' Gaming_exp '_SplitPoint.mat'],'splitPoint');
     sca;
 catch
