@@ -51,7 +51,7 @@ while true
         break
     end
 
-    pause(0.08)
+    %pause(0.08)
 end
 
 % close(gcf)
