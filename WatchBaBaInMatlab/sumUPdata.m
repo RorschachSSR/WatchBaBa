@@ -1,22 +1,20 @@
 clear;
 
-N=40; % total num of the videos;
+N=15; % total num of the videos;
 allcoarse = zeros(N,10000);
 allfine = zeros(N,10000);
 alltime = zeros(1,N);
 playtimes = zeros(1,N);
 
-videopath = [cd '\videos'];
-videodir = dir(fullfile(videopath, '*.mp4')); %get the video files
+
 
 path = [cd '\SAVE'];
 filedir = dir(fullfile(path, '*.mat')); %get the data files
 
 for i = 1 : length(filedir)
     load([filedir(i).folder '\' filedir(i).name]); 
-   for j = 1 : size(splitPoint.video,3)
-       videoname=splitPoint.video(:,:,j);
-       video_no = find_video_no(videodir,videoname);
+   for j = 1 : N
+       video_no = splitPoint.order(j);
        videotime = splitPoint.time(j);
        coarse_split = split_in_bins(splitPoint.the_coarse(j,:),videotime);
        fine_split = split_in_bins(splitPoint.the_fine(j,:),videotime);

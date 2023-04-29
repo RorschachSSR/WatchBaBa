@@ -1,0 +1,52 @@
+{
+    "chapterInfoDict": {
+        "m_keys": [
+            0
+        ],
+        "m_values": [
+            {
+                "levelInfoDict": {
+                    "m_keys": [
+                        0,
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "m_values": [
+                        1,
+                        1,
+                        1,
+                        1,
+                        1
+                    ]
+                }
+            }
+        ]
+    },
+    "chapterTimerInfoDict": {
+        "m_keys": [
+            0
+        ],
+        "m_values": [
+            {
+                "levelTimerInfoDict": {
+                    "m_keys": [
+                        0,
+                        1,
+                        2,
+                        3,
+                        4
+                    ],
+                    "m_values": [
+                        27.650554656982423,
+                        13.097553253173829,
+                        249.22967529296876,
+                        23.37887191772461,
+                        11.8977632522583
+                    ]
+                }
+            }
+        ]
+    }
+}

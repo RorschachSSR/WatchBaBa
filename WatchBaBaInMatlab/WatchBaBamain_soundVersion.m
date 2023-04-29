@@ -1,4 +1,4 @@
-% run the whole experiment
+ % run the whole experiment
 % Linfeng Jiang 2022.12.2
 prompt = {'Creat your game ID:','Do you have any Game Experience before(1 for yes,0 for no):'};
 dlgtitle = 'Watch BaBa';
@@ -16,6 +16,7 @@ try
     [practiceList_coarse,practiceList_fine] = practiceList(3); % generate the prectice List
     splitPoint_1 = zeros(video_N,1000);
     splitPoint_2 = zeros(video_N,1000);
+    timelag = zeros(video_N,1000);
     creativity = zeros(1,video_N);
     video_time = zeros(1,video_N);
     % Initialize with unified keynames and normalized colorspace:
@@ -33,6 +34,7 @@ try
     seven=KbName('7&');
     eight=KbName('8*');
     nine=KbName('9(');
+    zero=KbName('0)');
     Screen('Preference', 'SkipSyncTests', 1);
     PsychDefaultSetup(2);
     HideCursor;
@@ -145,7 +147,7 @@ try
                     Screen('PlayMovie',mwindow,0);
                     while 1
                         [numisdown,~,numcode]=KbCheck;
-                        if(numisdown && (numcode(one)||numcode(two)||numcode(three)||numcode(four)||numcode(five)||numcode(six)||numcode(seven)||numcode(eight)||numcode(nine)))
+                        if(numisdown && (numcode(one)||numcode(two)||numcode(three)||numcode(four)||numcode(five)||numcode(six)||numcode(seven)||numcode(eight)||numcode(nine)||numcode(zero)))
                             PsychPortAudio('Start', pahandle); 
                             clear numisdown numcode;
                             break;
@@ -199,8 +201,9 @@ try
         % time to flip
         Screen('Flip',window);
         while 1
-            [keyisdown,~,keycode]=KbCheck;
-            if(keyisdown && keycode(space))
+            [x,y,buttons]=GetMouse;
+            if buttons(1)==1
+                clear buttons
                 break;
             end
         end
@@ -314,7 +317,7 @@ try
         HideCursor;
         
         
-        if i<4
+        if i<3
             rest_2 = imread('rest_2.png');
             rest_2Index = Screen('MakeTexture',window,rest_2);
             % get the size of image & texture
@@ -331,8 +334,9 @@ try
             Screen('Flip',window);
             
             while 1
-                [keyisdown,~,keycode]=KbCheck;
-                if(keyisdown && keycode(space))
+            [x,y,buttons]=GetMouse;
+                if buttons(1)==1
+                    clear buttons
                     break;
                 end
             end
@@ -362,8 +366,9 @@ try
     Screen('Flip',window);
     % next guideline with space pressed
     while 1
-        [keyisdown,~,keycode]=KbCheck;
-        if(keyisdown && keycode(space))
+        [x,y,buttons]=GetMouse;
+        if buttons(1)
+            clear buttons
             break;
         end
     end
@@ -415,26 +420,38 @@ try
                     Screen('PlayMovie',mwindow,0);
                     while 1
                         [numisdown,~,numcode]=KbCheck;
-                        if(numisdown&& (numcode(one)||numcode(two)||numcode(three)||numcode(four)||numcode(five)||numcode(six)||numcode(seven)||numcode(eight)||numcode(nine)))
-                            PsychPortAudio('Start', pahandle); 4
+                        if(numisdown&& (numcode(one)||numcode(two)||numcode(three)||numcode(four)||numcode(five)||numcode(six)||numcode(seven)||numcode(eight)||numcode(nine)||numcode(zero)))
+                            PsychPortAudio('Start', pahandle); 
                             if numcode(one)
                                 splitPoint_1(i,point_i)=pausetime-1;
+                                timelag(i,point_i)=1;
                             elseif numcode(two)
                                 splitPoint_1(i,point_i)=pausetime-2;
+                                timelag(i,point_i)=2;
                             elseif numcode(three)
                                 splitPoint_1(i,point_i)=pausetime-3;
+                                timelag(i,point_i)=3;
                             elseif numcode(four)
                                 splitPoint_1(i,point_i)=pausetime-4;
+                                timelag(i,point_i)=4;
                             elseif numcode(five)
                                 splitPoint_1(i,point_i)=pausetime-5;
+                                timelag(i,point_i)=5;
                             elseif numcode(six)
                                 splitPoint_1(i,point_i)=pausetime-6;
+                                timelag(i,point_i)=6;
                             elseif numcode(seven)
                                 splitPoint_1(i,point_i)=pausetime-7;
+                                timelag(i,point_i)=7;
                             elseif numcode(eight)
                                 splitPoint_1(i,point_i)=pausetime-8;
+                                timelag(i,point_i)=8;
                             elseif numcode(nine)
                                 splitPoint_1(i,point_i)=pausetime-9;
+                                timelag(i,point_i)=9;
+                            elseif numcode(zero)
+                                splitPoint_1(i,point_i)=pausetime;
+                                timelag(i,point_i)=0;
                             end
                             point_i=point_i+1;
                             clear numisdown numcode;
@@ -492,8 +509,9 @@ try
         % time to flip
         Screen('Flip',window);
         while 1
-            [keyisdown,~,keycode]=KbCheck;
-            if(keyisdown && keycode(space))
+            [x,y,buttons]=GetMouse;
+            if buttons(1)==1
+                clear buttons
                 break;
             end
         end
@@ -627,11 +645,12 @@ try
             % time to flip
             Screen('Flip',window);
             while 1
-                [keyisdown,~,keycode]=KbCheck;
-                if(keyisdown && keycode(space))
+                [x,y,buttons]=GetMouse;
+                if buttons(1)==1
+                    clear buttons
                     break;
                 end
-            end
+             end
             % show crosshair to start
             Screen('DrawLine',window,[255 255 255],cx-30,cy,cx+30,cy,4);
             Screen('DrawLine',window,[255 255 255],cx,cy-30,cx,cy+30,4);
@@ -646,6 +665,7 @@ try
     splitPoint.time = video_time;
     splitPoint.the_coarse = splitPoint_1;
     splitPoint.the_fine = splitPoint_2;
+    splitPoint.timelag = timelag;
     splitPoint.creaPoint = creativity;
     save([cd '\SAVE\' ID '_' Gaming_exp '_SplitPoint.mat'],'splitPoint');
     sca;
