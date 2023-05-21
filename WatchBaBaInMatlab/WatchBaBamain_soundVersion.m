@@ -63,7 +63,7 @@ try
         % scaling ration
         scale = 0.3;
         % get the size & location of the image
-        dstRect = [0 0 imgWidth imgHeight] .* scale;
+        dstRect = [0 0 imgWidth imgHeight] .* scaldwe;
         dstRect = CenterRectOnPoint(dstRect, cx, cy);
         % draw the guidence 
         Screen('DrawTexture',window,guidanceIndex,[], dstRect);
