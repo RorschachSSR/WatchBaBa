@@ -1,0 +1,355 @@
+[1mdiff --git a/WatchBaBaInMatlab/WatchBaBamain_soundVersion.m b/WatchBaBaInMatlab/WatchBaBamain_soundVersion.m[m
+[1mindex d85fae9..d38ef6f 100644[m
+[1m--- a/WatchBaBaInMatlab/WatchBaBamain_soundVersion.m[m
+[1m+++ b/WatchBaBaInMatlab/WatchBaBamain_soundVersion.m[m
+[36m@@ -1,4 +1,4 @@[m
+[31m- % run the whole experiment[m
+[32m+[m[32m% run the whole experiment[m
+ % Linfeng Jiang 2022.12.2[m
+ prompt = {'Creat your game ID:','Do you have any Game Experience before(1 for yes,0 for no):'};[m
+ dlgtitle = 'Watch BaBa';[m
+[36m@@ -11,7 +11,7 @@[m [mtry[m
+     % Check if Psychtoolbox is properly installed:[m
+     AssertOpenGL;[m
+     % get the video list and variable to store data[m
+[31m-    video_N =  15; % the number of videos to be watched[m
+[32m+[m[32m    video_N =  5; % the number of videos to be watched[m
+     [videoList_coarse,videoList_fine,order] = generate_order(video_N); % generate the video list[m
+     [practiceList_coarse,practiceList_fine] = practiceList(3); % generate the prectice List[m
+     splitPoint_1 = zeros(video_N,1000);[m
+[36m@@ -63,7 +63,7 @@[m [mtry[m
+         % scaling ration[m
+         scale = 0.3;[m
+         % get the size & location of the image[m
+[31m-        dstRect = [0 0 imgWidth imgHeight] .* scaldwe;[m
+[32m+[m[32m        dstRect = [0 0 imgWidth imgHeight] .* scale;[m
+         dstRect = CenterRectOnPoint(dstRect, cx, cy);[m
+         % draw the guidence [m
+         Screen('DrawTexture',window,guidanceIndex,[], dstRect);[m
+[1mdiff --git a/WatchBaBaInMatlab/data_added_up/Video_NO_A.mat b/WatchBaBaInMatlab/data_added_up/Video_NO_A.mat[m
+[1mindex 441d4a7..8009605 100644[m
+Binary files a/WatchBaBaInMatlab/data_added_up/Video_NO_A.mat and b/WatchBaBaInMatlab/data_added_up/Video_NO_A.mat differ
+[1mdiff --git a/WatchBaBaInMatlab/data_added_up/Video_NO_B.mat b/WatchBaBaInMatlab/data_added_up/Video_NO_B.mat[m
+[1mindex ad050f7..6de3148 100644[m
+Binary files a/WatchBaBaInMatlab/data_added_up/Video_NO_B.mat and b/WatchBaBaInMatlab/data_added_up/Video_NO_B.mat differ
+[1mdiff --git a/WatchBaBaInMatlab/data_added_up/Video_NO_C.mat b/WatchBaBaInMatlab/data_added_up/Video_NO_C.mat[m
+[1mindex d512d4f..61d6e62 100644[m
+Binary files a/WatchBaBaInMatlab/data_added_up/Video_NO_C.mat and b/WatchBaBaInMatlab/data_added_up/Video_NO_C.mat differ
+[1mdiff --git a/WatchBaBaInMatlab/data_added_up/Video_NO_D.mat b/WatchBaBaInMatlab/data_added_up/Video_NO_D.mat[m
+[1mindex 864bab2..585652a 100644[m
+Binary files a/WatchBaBaInMatlab/data_added_up/Video_NO_D.mat and b/WatchBaBaInMatlab/data_added_up/Video_NO_D.mat differ
+[1mdiff --git a/WatchBaBaInMatlab/data_added_up/Video_NO_E.mat b/WatchBaBaInMatlab/data_added_up/Video_NO_E.mat[m
+[1mindex c4aade0..635ffbb 100644[m
+Binary files a/WatchBaBaInMatlab/data_added_up/Video_NO_E.mat and b/WatchBaBaInMatlab/data_added_up/Video_NO_E.mat differ
+[1mdiff --git a/WatchBaBaInMatlab/data_added_up/Video_NO_F.mat b/WatchBaBaInMatlab/data_added_up/Video_NO_F.mat[m
+[1mindex 7559965..d6b192e 100644[m
+Binary files a/WatchBaBaInMatlab/data_added_up/Video_NO_F.mat and b/WatchBaBaInMatlab/data_added_up/Video_NO_F.mat differ
+[1mdiff --git a/WatchBaBaInMatlab/data_added_up/Video_NO_G.mat b/WatchBaBaInMatlab/data_added_up/Video_NO_G.mat[m
+[1mindex 2c3f9ed..9137ac3 100644[m
+Binary files a/WatchBaBaInMatlab/data_added_up/Video_NO_G.mat and b/WatchBaBaInMatlab/data_added_up/Video_NO_G.mat differ
+[1mdiff --git a/WatchBaBaInMatlab/data_added_up/Video_NO_H.mat b/WatchBaBaInMatlab/data_added_up/Video_NO_H.mat[m
+[1mindex a2a9cee..6a889f0 100644[m
+Binary files a/WatchBaBaInMatlab/data_added_up/Video_NO_H.mat and b/WatchBaBaInMatlab/data_added_up/Video_NO_H.mat differ
+[1mdiff --git a/WatchBaBaInMatlab/data_added_up/Video_NO_I.mat b/WatchBaBaInMatlab/data_added_up/Video_NO_I.mat[m
+[1mindex ab27fc2..9af3b89 100644[m
+Binary files a/WatchBaBaInMatlab/data_added_up/Video_NO_I.mat and b/WatchBaBaInMatlab/data_added_up/Video_NO_I.mat differ
+[1mdiff --git a/WatchBaBaInMatlab/data_added_up/Video_NO_J.mat b/WatchBaBaInMatlab/data_added_up/Video_NO_J.mat[m
+[1mindex 8c8df1a..0f87655 100644[m
+Binary files a/WatchBaBaInMatlab/data_added_up/Video_NO_J.mat and b/WatchBaBaInMatlab/data_added_up/Video_NO_J.mat differ
+[1mdiff --git a/WatchBaBaInMatlab/data_added_up/Video_NO_K.mat b/WatchBaBaInMatlab/data_added_up/Video_NO_K.mat[m
+[1mindex 162bc24..7680ce8 100644[m
+Binary files a/WatchBaBaInMatlab/data_added_up/Video_NO_K.mat and b/WatchBaBaInMatlab/data_added_up/Video_NO_K.mat differ
+[1mdiff --git a/WatchBaBaInMatlab/data_added_up/Video_NO_L.mat b/WatchBaBaInMatlab/data_added_up/Video_NO_L.mat[m
+[1mindex 86d3337..d85320a 100644[m
+Binary files a/WatchBaBaInMatlab/data_added_up/Video_NO_L.mat and b/WatchBaBaInMatlab/data_added_up/Video_NO_L.mat differ
+[1mdiff --git a/WatchBaBaInMatlab/data_added_up/Video_NO_M.mat b/WatchBaBaInMatlab/data_added_up/Video_NO_M.mat[m
+[1mindex e7b77ab..1ca9ae8 100644[m
+Binary files a/WatchBaBaInMatlab/data_added_up/Video_NO_M.mat and b/WatchBaBaInMatlab/data_added_up/Video_NO_M.mat differ
+[1mdiff --git a/WatchBaBaInMatlab/data_added_up/Video_NO_N.mat b/WatchBaBaInMatlab/data_added_up/Video_NO_N.mat[m
+[1mindex 196c9be..47fe4d5 100644[m
+Binary files a/WatchBaBaInMatlab/data_added_up/Video_NO_N.mat and b/WatchBaBaInMatlab/data_added_up/Video_NO_N.mat differ
+[1mdiff --git a/WatchBaBaInMatlab/data_added_up/Video_NO_O.mat b/WatchBaBaInMatlab/data_added_up/Video_NO_O.mat[m
+[1mindex 99465ab..bfe665f 100644[m
+Binary files a/WatchBaBaInMatlab/data_added_up/Video_NO_O.mat and b/WatchBaBaInMatlab/data_added_up/Video_NO_O.mat differ
+[1mdiff --git a/WatchBaBaInMatlab/exp_AvgDist.m b/WatchBaBaInMatlab/exp_AvgDist.m[m
+[1mindex 130b796..6cee75e 100644[m
+[1m--- a/WatchBaBaInMatlab/exp_AvgDist.m[m
+[1m+++ b/WatchBaBaInMatlab/exp_AvgDist.m[m
+[36m@@ -1,10 +1,10 @@[m
+ function exp_averageDist = exp_AvgDist(fine_split)[m
+ exp_averageDist=0;[m
+[31m-for i=1:length(fine_split)-1[m
+[32m+[m[32mfor i=1:length(fine_split)[m
+     if i ==1[m
+         exp_averageDist = exp_averageDist + 1/2*fine_split(i)^2;[m
+     else[m
+[31m-        exp_averageDist = exp_averageDist + 1/2*(fine_split(i+1)-fine_split(i))^2;[m
+[32m+[m[32m        exp_averageDist = exp_averageDist + 1/2*(fine_split(i)-fine_split(i-1))^2;[m
+     end[m
+ end[m
+ exp_averageDist = exp_averageDist/fine_split(end);[m
+[1mdiff --git a/WatchBaBaInMatlab/figure/Agreefig.png b/WatchBaBaInMatlab/figure/Agreefig.png[m
+[1mindex 7101fba..97a9899 100644[m
+Binary files a/WatchBaBaInMatlab/figure/Agreefig.png and b/WatchBaBaInMatlab/figure/Agreefig.png differ
+[1mdiff --git a/WatchBaBaInMatlab/figure/AvgDist_ANOVA_result.txt b/WatchBaBaInMatlab/figure/AvgDist_ANOVA_result.txt[m
+[1mindex 4741f29..14caa25 100644[m
+[1m--- a/WatchBaBaInMatlab/figure/AvgDist_ANOVA_result.txt[m
+[1m+++ b/WatchBaBaInMatlab/figure/AvgDist_ANOVA_result.txt[m
+[36m@@ -1,9779 +1,227 @@[m
+[31m-[m
+[31m-====== ANOVA (Within-Subjects Design) ======[m
+[31m-[m
+[31m-Descriptives:[m
+[31m-─────────────────────────────────[m
+[31m- "video" "exp"   Mean     S.D.  n[m
+[31m-─────────────────────────────────[m
+[31m- video01  exp0  5.171 (11.741) 19[m
+[31m- video01  exp1  9.717 (10.908) 19[m
+[31m- video02  exp0  0.907 ( 0.756) 19[m
+[31m- video02  exp1  5.913 ( 4.153) 19[m
+[31m- video03  exp0  3.514 ( 3.035) 19[m
+[31m- video03  exp1 11.787 (14.313) 19[m
+[31m- video04  exp0  0.902 ( 1.407) 19[m
+[31m- video04  exp1  1.668 ( 1.420) 19[m
+[31m- video05  exp0  1.191 ( 1.542) 19[m
+[31m- video05  exp1  2.694 ( 2.067) 19[m
+[31m- video06  exp0  0.790 ( 0.453) 19[m
+[31m- video06  exp1  2.354 ( 1.061) 19[m
+[31m- video07  exp0  0.175 ( 0.209) 19[m
+[31m- video07  exp1  0.907 ( 0.341) 19[m
+[31m- video08  exp0  0.192 ( 0.418) 19[m
+[31m- video08  exp1  0.947 ( 0.355) 19[m
+[31m- video09  exp0  0.378 ( 0.609) 19[m
+[31m- video09  exp1  1.632 ( 1.218) 19[m
+[31m- video10  exp0  3.606 ( 4.915) 19[m
+[31m- video10  exp1 11.888 (10.763) 19[m
+[31m- video11  exp0  1.496 ( 1.445) 19[m
+[31m- video11  exp1  4.746 ( 2.758) 19[m
+[31m- video12  exp0  1.077 ( 1.137) 19[m
+[31m- video12  exp1  5.749 ( 4.917) 19[m
+[31m- video13  exp0 12.303 (29.673) 19[m
+[31m- video13  exp1 15.187 (24.198) 19[m
+[31m- video14  exp0  6.500 (19.512) 19[m
+[31m- video14  exp1  5.667 ( 4.494) 19[m
+[31m- video15  exp0  1.297 ( 0.946) 19[m
+[31m- video15  exp1  7.107 ( 5.101) 19[m
+[31m-─────────────────────────────────[m
+[31m-Total sample size: N = 19[m
+[31m-[m
+[31m-ANOVA Table:[m
+[31m-Dependent variable(s):      video01exp0, video02exp0, video03exp0, video04exp0, video05exp0, video06exp0, video07exp0, video08exp0, video09exp0, video10exp0, video11exp0, video12exp0, video13exp0, video14exp0, video15exp0, video01exp1, video02exp1, video03exp1, video04exp1, video05exp1, video06exp1, video07exp1, video08exp1, video09exp1, video10exp1, video11exp1, video12exp1, video13exp1, video14exp1, video15exp1[m
+[31m-Between-subjects factor(s): –[m
+[31m-Within-subjects factor(s):  video, exp[m
+[31m-Covariate(s):               –[m
+[31m-─────────────────────────────────────────────────────────────────────────────────────[m
+[31m-                   MS      MSE   df1    df2      F     p     η²p [90% CI of η²p]  η²G[m
+[31m-─────────────────────────────────────────────────────────────────────────────────────[m
+[31m-video        4978.569 1046.334 1.445 26.010  4.758  .027 *     .209 [.016, .414] .134[m
+[31m-exp          1487.497   74.295 1.000 18.000 20.022 <.001 ***   .527 [.239, .699] .031[m
+[31m-video * exp   441.898  229.137 2.350 42.297  1.929  .151       .097 [.000, .230] .022[m
+[31m-─────────────────────────────────────────────────────────────────────────────────────[m
+[31m-Sphericity correction method: GG (Greenhouse-Geisser)[m
+[31m-MSE = mean square error (the residual variance of the linear model)[m
+[31m-η²p = partial eta-squared = SS / (SS + SSE) = F * df1 / (F * df1 + df2)[m
+[31m-ω²p = partial omega-squared = (F - 1) * df1 / (F * df1 + df2 + 1)[m
+[31m-η²G = generalized eta-squared (see Olejnik & Algina, 2003)[m
+[31m-Cohen’s f² = η²p / (1 - η²p)[m
+[31m-[m
+[31m-Levene’s Test for Homogeneity of Variance:[m
+[31m-No between-subjects factors. No need to do the Levene’s test.[m
+[31m-[m
+[31m-Mauchly’s Test of Sphericity:[m
+[31m-──────────────────────────────────[m
+[31m-             Mauchly's W     p    [m
+[31m-──────────────────────────────────[m
+[31m-video             0.0000 <.001 ***[m
+[31m-video * exp       0.0000 <.001 ***[m
+[31m-──────────────────────────────────[m
+[31m-[m
+[31m------- EMMEANS (effect = "video") ------[m
+[31m-[m
+[31m-Joint Tests of "video":[m
+[31m-──────────────────────────────────────────────────────────[m
+[31m- Effect "exp" df1 df2      F     p     η²p [90% CI of η²p][m
+[31m-──────────────────────────────────────────────────────────[m
+[31m-  video  exp0  14  18 22.281 <.001 ***   .945 [.888, .965][m
+[31m-  video  exp1  14  18 23.957 <.001 ***   .949 [.896, .968][m
+[31m-──────────────────────────────────────────────────────────[m
+[31m-Note. Simple effects of repeated measures with 3 or more levels[m
+[31m-are different from the results obtained with SPSS MANOVA syntax.[m
+[31m-[m
+[31m-Multivariate Tests of "video":[m
+[31m-───────────────────────────────────────────────────────────────────[m
+[31m-               Pillai’s trace Hypoth. df Error df Exact F     p    [m
+[31m-───────────────────────────────────────────────────────────────────[m
+[31m-exp0: "video"           0.945     14.000    5.000   6.189  .027 *  [m
+[31m-exp1: "video"           0.949     14.000    5.000   6.655  .023 *  [m
+[31m-───────────────────────────────────────────────────────────────────[m
+[31m-Note. Identical to the results obtained with SPSS GLM EMMEANS syntax.[m
+[31m-[m
+[31m-Estimated Marginal Means of "video":[m
+[31m-──────────────────────────────────────────────[m
+[31m- "video" "exp"   Mean [95% CI of Mean]    S.E.[m
+[31m-──────────────────────────────────────────────[m
+[31m- video01  exp0  5.171 [-0.488, 10.830] (2.694)[m
+[31m- video02  exp0  0.907 [ 0.542,  1.271] (0.173)[m
+[31m- video03  exp0  3.514 [ 2.052,  4.977] (0.696)[m
+[31m- video04  exp0  0.902 [ 0.224,  1.581] (0.323)[m
+[31m- video05  exp0  1.191 [ 0.448,  1.934] (0.354)[m
+[31m- video06  exp0  0.790 [ 0.572,  1.008] (0.104)[m
+[31m- video07  exp0  0.175 [ 0.075,  0.276] (0.048)[m
+[31m- video08  exp0  0.192 [-0.010,  0.393] (0.096)[m
+[31m- video09  exp0  0.378 [ 0.085,  0.672] (0.140)[m
+[31m- video10  exp0  3.606 [ 1.237,  5.975] (1.128)[m
+[31m- video11  exp0  1.496 [ 0.799,  2.192] (0.332)[m
+[31m- video12  exp0  1.077 [ 0.529,  1.625] (0.261)[m
+[31m- video13  exp0 12.303 [-1.998, 26.605] (6.807)[m
+[31m- video14  exp0  6.500 [-2.905, 15.904] (4.476)[m
+[31m- video15  exp0  1.297 [ 0.841,  1.753] (0.217)[m
+[31m- video01  exp1  9.717 [ 4.460, 14.975] (2.503)[m
+[31m- video02  exp1  5.913 [ 3.912,  7.915] (0.953)[m
+[31m- video03  exp1 11.787 [ 4.888, 18.686] (3.284)[m
+[31m- video04  exp1  1.668 [ 0.983,  2.352] (0.326)[m
+[31m- video05  exp1  2.694 [ 1.698,  3.690] (0.474)[m
+[31m- video06  exp1  2.354 [ 1.842,  2.865] (0.243)[m
+[31m- video07  exp1  0.907 [ 0.743,  1.071] (0.078)[m
+[31m- video08  exp1  0.947 [ 0.776,  1.118] (0.081)[m
+[31m- video09  exp1  1.632 [ 1.045,  2.219] (0.279)[m
+[31m- video10  exp1 11.888 [ 6.701, 17.076] (2.469)[m
+[31m- video11  exp1  4.746 [ 3.417,  6.075] (0.633)[m
+[31m- video12  exp1  5.749 [ 3.379,  8.119] (1.128)[m
+[31m- video13  exp1 15.187 [ 3.524, 26.850] (5.551)[m
+[31m- video14  exp1  5.667 [ 3.501,  7.833] (1.031)[m
+[31m- video15  exp1  7.107 [ 4.648,  9.566] (1.170)[m
+[31m-──────────────────────────────────────────────[m
+[31m-[m
+[31m-Pairwise Comparisons of "video":[m
+[31m-─────────────────────────────────────────────────────────────────────────────────────[m
+[31m-          Contrast "exp" Estimate    S.E. df      t     p     Cohen’s d [95% CI of d][m
+[31m-─────────────────────────────────────────────────────────────────────────────────────[m
+[31m- video02 - video01  exp0   -4.264 (2.642) 18 -1.614 1.000     -0.352 [-1.281,  0.577][m
+[31m- video03 - video01  exp0   -1.657 (2.644) 18 -0.627 1.000     -0.137 [-1.066,  0.792][m
+[31m- video03 - video02  exp0    2.608 (0.758) 18  3.438  .308      0.215 [-0.051,  0.482][m
+[31m- video04 - video01  exp0   -4.269 (2.765) 18 -1.543 1.000     -0.353 [-1.325,  0.619][m
+[31m- video04 - video02  exp0   -0.004 (0.314) 18 -0.014 1.000     -0.000 [-0.111,  0.110][m
+[31m- video04 - video03  exp0   -2.612 (0.731) 18 -3.572  .229     -0.216 [-0.473,  0.041][m
+[31m- video05 - video01  exp0   -3.980 (2.484) 18 -1.602 1.000     -0.329 [-1.202,  0.544][m
+[31m- video05 - video02  exp0    0.284 (0.315) 18  0.902 1.000      0.023 [-0.087,  0.134][m
+[31m- video05 - video03  exp0   -2.324 (0.669) 18 -3.474  .285     -0.192 [-0.427,  0.043][m
+[31m- video05 - video04  exp0    0.288 (0.349) 18  0.826 1.000      0.024 [-0.099,  0.146][m
+[31m- video06 - video01  exp0   -4.381 (2.721) 18 -1.610 1.000     -0.362 [-1.318,  0.595][m
+[31m- video06 - video02  exp0   -0.116 (0.192) 18 -0.606 1.000     -0.010 [-0.077,  0.058][m
+[31m- video06 - video03  exp0   -2.724 (0.721) 18 -3.776  .145     -0.225 [-0.479,  0.029][m
+[31m- video06 - video04  exp0   -0.112 (0.306) 18 -0.366 1.000     -0.009 [-0.117,  0.098][m
+[31m- video06 - video05  exp0   -0.400 (0.364) 18 -1.100 1.000     -0.033 [-0.161,  0.095][m
+[31m- video07 - video01  exp0   -4.996 (2.707) 18 -1.846 1.000     -0.413 [-1.364,  0.539][m
+[31m- video07 - video02  exp0   -0.732 (0.170) 18 -4.305  .045 *   -0.060 [-0.120, -0.001][m
+[31m- video07 - video03  exp0   -3.339 (0.720) 18 -4.638  .021 *   -0.276 [-0.529, -0.023][m
+[31m- video07 - video04  exp0   -0.727 (0.335) 18 -2.172 1.000     -0.060 [-0.178,  0.058][m
+[31m- video07 - video05  exp0   -1.015 (0.367) 18 -2.771 1.000     -0.084 [-0.213,  0.045][m
+[31m- video07 - video06  exp0   -0.615 (0.106) 18 -5.820  .002 **  -0.051 [-0.088, -0.014][m
+[31m- video08 - video01  exp0   -4.979 (2.704) 18 -1.842 1.000     -0.411 [-1.362,  0.539][m
+[31m- video08 - video02  exp0   -0.715 (0.188) 18 -3.813  .134     -0.059 [-0.125,  0.007][m
+[31m- video08 - video03  exp0   -3.323 (0.709) 18 -4.684  .019 *   -0.275 [-0.524, -0.025][m
+[31m- video08 - video04  exp0   -0.711 (0.350) 18 -2.032 1.000     -0.059 [-0.182,  0.064][m
+[31m- video08 - video05  exp0   -0.999 (0.390) 18 -2.562 1.000     -0.083 [-0.220,  0.055][m
+[31m- video08 - video06  exp0   -0.599 (0.165) 18 -3.624  .204     -0.049 [-0.108,  0.009][m
+[31m- video08 - video07  exp0    0.016 (0.111) 18  0.146 1.000      0.001 [-0.038,  0.041][m
+[31m- video09 - video01  exp0   -4.793 (2.620) 18 -1.829 1.000     -0.396 [-1.317,  0.525][m
+[31m- video09 - video02  exp0   -0.529 (0.198) 18 -2.673 1.000     -0.044 [-0.113,  0.026][m
+[31m- video09 - video03  exp0   -3.136 (0.709) 18 -4.426  .034 *   -0.259 [-0.508, -0.010][m
+[31m- video09 - video04  exp0   -0.524 (0.357) 18 -1.467 1.000     -0.043 [-0.169,  0.082][m
+[31m- video09 - video05  exp0   -0.812 (0.361) 18 -2.253 1.000     -0.067 [-0.194,  0.060][m
+[31m- video09 - video06  exp0   -0.412 (0.199) 18 -2.070 1.000     -0.034 [-0.104,  0.036][m
+[31m- video09 - video07  exp0    0.203 (0.150) 18  1.353 1.000      0.017 [-0.036,  0.069][m
+[31m- video09 - video08  exp0    0.187 (0.179) 18  1.044 1.000      0.015 [-0.047,  0.078][m
+[31m- video10 - video01  exp0   -1.565 (2.739) 18 -0.571 1.000     -0.129 [-1.092,  0.833][m
+[31m- video10 - video02  exp0    2.699 (1.158) 18  2.331 1.000      0.223 [-0.184,  0.630][m
+[31m- video10 - video03  exp0    0.092 (0.953) 18  0.096 1.000      0.008 [-0.327,  0.343][m
+[31m- video10 - video04  exp0    2.704 (1.183) 18  2.286 1.000      0.223 [-0.192,  0.639][m
+[31m- video10 - video05  exp0    2.416 (1.185) 18  2.039 1.000      0.200 [-0.217,  0.616][m
+[31m- video10 - video06  exp0    2.816 (1.108) 18  2.542 1.000      0.233 [-0.157,  0.622][m
+[31m- video10 - video07  exp0    3.431 (1.144) 18  2.998  .811      0.283 [-0.119,  0.686][m
+[31m- video10 - video08  exp0    3.415 (1.144) 18  2.984  .835      0.282 [-0.120,  0.684][m
+[31m- video10 - video09  exp0    3.228 (1.125) 18  2.870 1.000      0.267 [-0.129,  0.662][m
+[31m- video11 - video01  exp0   -3.675 (2.651) 18 -1.386 1.000     -0.304 [-1.236,  0.628][m
+[31m- video11 - video02  exp0    0.589 (0.363) 18  1.621 1.000      0.049 [-0.079,  0.176][m
+[31m- video11 - video03  exp0   -2.019 (0.848) 18 -2.379 1.000     -0.167 [-0.465,  0.131][m
+[31m- video11 - video04  exp0    0.593 (0.504) 18  1.178 1.000      0.049 [-0.128,  0.226][m
+[31m- video11 - video05  exp0    0.305 (0.535) 18  0.571 1.000      0.025 [-0.163,  0.213][m
+[31m- video11 - video06  exp0    0.706 (0.389) 18  1.813 1.000      0.058 [-0.079,  0.195][m
+[31m- video11 - video07  exp0    1.321 (0.337) 18  3.922  .105      0.109 [-0.009,  0.227][m
+[31m- video11 - video08  exp0    1.304 (0.326) 18  4.002  .088 .    0.108 [-0.007,  0.222][m
+[31m- video11 - video09  exp0    1.118 (0.279) 18  4.002  .088 .    0.092 [-0.006,  0.190][m
+[31m- video11 - video10  exp0   -2.110 (1.211) 18 -1.743 1.000     -0.174 [-0.600,  0.251][m
+[31m- video12 - video01  exp0   -4.094 (2.726) 18 -1.502 1.000     -0.338 [-1.296,  0.620][m
+[31m- video12 - video02  exp0    0.170 (0.307) 18  0.555 1.000      0.014 [-0.094,  0.122][m
+[31m- video12 - video03  exp0   -2.437 (0.782) 18 -3.117  .625     -0.201 [-0.476,  0.074][m
+[31m- video12 - video04  exp0    0.175 (0.418) 18  0.417 1.000      0.014 [-0.133,  0.161][m
+[31m- video12 - video05  exp0   -0.114 (0.474) 18 -0.240 1.000     -0.009 [-0.176,  0.157][m
+[31m- video12 - video06  exp0    0.287 (0.274) 18  1.045 1.000      0.024 [-0.073,  0.120][m
+[31m- video12 - video07  exp0    0.902 (0.272) 18  3.318  .402      0.075 [-0.021,  0.170][m
+[31m- video12 - video08  exp0    0.886 (0.290) 18  3.052  .721      0.073 [-0.029,  0.175][m
+[31m- video12 - video09  exp0    0.699 (0.270) 18  2.585 1.000      0.058 [-0.037,  0.153][m
+[31m- video12 - video10  exp0   -2.529 (1.180) 18 -2.144 1.000     -0.209 [-0.624,  0.206][m
+[31m- video12 - video11  exp0   -0.419 (0.405) 18 -1.035 1.000     -0.035 [-0.177,  0.108][m
+[31m- video13 - video01  exp0    7.132 (4.314) 18  1.653 1.000      0.589 [-0.927,  2.106][m
+[31m- video13 - video02  exp0   11.397 (6.760) 18  1.686 1.000      0.941 [-1.435,  3.318][m
+[31m- video13 - video03  exp0    8.789 (6.620) 18  1.328 1.000      0.726 [-1.601,  3.053][m
+[31m- video13 - video04  exp0   11.401 (6.868) 18  1.660 1.000      0.942 [-1.472,  3.356][m
+[31m- video13 - video05  exp0   11.113 (6.585) 18  1.688 1.000      0.918 [-1.397,  3.233][m
+[31m- video13 - video06  exp0   11.513 (6.820) 18  1.688 1.000      0.951 [-1.446,  3.348][m
+[31m- video13 - video07  exp0   12.128 (6.822) 18  1.778 1.000      1.002 [-1.396,  3.400][m
+[31m- video13 - video08  exp0   12.112 (6.823) 18  1.775 1.000      1.001 [-1.398,  3.399][m
+[31m- video13 - video09  exp0   11.925 (6.756) 18  1.765 1.000      0.985 [-1.390,  3.360][m
+[31m- video13 - video10  exp0    8.697 (6.475) 18  1.343 1.000      0.718 [-1.558,  2.995][m
+[31m- video13 - video11  exp0   10.808 (6.807) 18  1.588 1.000      0.893 [-1.500,  3.286][m
+[31m- video13 - video12  exp0   11.226 (6.857) 18  1.637 1.000      0.927 [-1.483,  3.338][m
+[31m- video14 - video01  exp0    1.329 (2.366) 18  0.562 1.000      0.110 [-0.722,  0.941][m
+[31m- video14 - video02  exp0    5.593 (4.412) 18  1.268 1.000      0.462 [-1.089,  2.013][m
+[31m- video14 - video03  exp0    2.985 (4.402) 18  0.678 1.000      0.247 [-1.301,  1.794][m
+[31m- video14 - video04  exp0    5.597 (4.530) 18  1.236 1.000      0.462 [-1.130,  2.055][m
+[31m- video14 - video05  exp0    5.309 (4.229) 18  1.255 1.000      0.439 [-1.048,  1.925][m
+[31m- video14 - video06  exp0    5.709 (4.488) 18  1.272 1.000      0.472 [-1.106,  2.049][m
+[31m- video14 - video07  exp0    6.324 (4.487) 18  1.409 1.000      0.522 [-1.055,  2.100][m
+[31m- video14 - video08  exp0    6.308 (4.487) 18  1.406 1.000      0.521 [-1.056,  2.098][m
+[31m- video14 - video09  exp0    6.121 (4.453) 18  1.375 1.000      0.506 [-1.060,  2.071][m
+[31m- video14 - video10  exp0    2.893 (4.482) 18  0.646 1.000      0.239 [-1.336,  1.814][m
+[31m- video14 - video11  exp0    5.004 (4.516) 18  1.108 1.000      0.413 [-1.174,  2.001][m
+[31m- video14 - video12  exp0    5.423 (4.537) 18  1.195 1.000      0.448 [-1.147,  2.043][m
+[31m- video14 - video13  exp0   -5.804 (3.017) 18 -1.924 1.000     -0.479 [-1.540,  0.581][m
+[31m- video15 - video01  exp0   -3.874 (2.657) 18 -1.458 1.000     -0.320 [-1.254,  0.614][m
+[31m- video15 - video02  exp0    0.391 (0.176) 18  2.223 1.000      0.032 [-0.029,  0.094][m
+[31m- video15 - video03  exp0   -2.217 (0.771) 18 -2.877 1.000     -0.183 [-0.454,  0.088][m
+[31m- video15 - video04  exp0    0.395 (0.353) 18  1.117 1.000      0.033 [-0.092,  0.157][m
+[31m- video15 - video05  exp0    0.107 (0.372) 18  0.286 1.000      0.009 [-0.122,  0.140][m
+[31m- video15 - video06  exp0    0.507 (0.247) 18  2.050 1.000      0.042 [-0.045,  0.129][m
+[31m- video15 - video07  exp0    1.122 (0.218) 18  5.148  .007 **   0.093 [ 0.016,  0.169][m
+[31m- video15 - video08  exp0    1.106 (0.247) 18  4.479  .030 *    0.091 [ 0.005,  0.178][m
+[31m- video15 - video09  exp0    0.919 (0.193) 18  4.765  .016 *    0.076 [ 0.008,  0.144][m
+[31m- video15 - video10  exp0   -2.309 (1.178) 18 -1.960 1.000     -0.191 [-0.605,  0.223][m
+[31m- video15 - video11  exp0   -0.199 (0.343) 18 -0.579 1.000     -0.016 [-0.137,  0.104][m
+[31m- video15 - video12  exp0    0.220 (0.332) 18  0.663 1.000      0.018 [-0.099,  0.135][m
+[31m- video15 - video13  exp0  -11.006 (6.783) 18 -1.623 1.000     -0.909 [-3.293,  1.475][m
+[31m- video15 - video14  exp0   -5.202 (4.446) 18 -1.170 1.000     -0.430 [-1.993,  1.133][m
+[31m- video02 - video01  exp1   -3.804 (2.296) 18 -1.657 1.000     -0.314 [-1.121,  0.493][m
+[31m- video03 - video01  exp1    2.070 (1.444) 18  1.433 1.000      0.171 [-0.337,  0.679][m
+[31m- video03 - video02  exp1    5.874 (3.150) 18  1.865 1.000      0.485 [-0.622,  1.593][m
+[31m- video04 - video01  exp1   -8.050 (2.536) 18 -3.174  .551     -0.665 [-1.556,  0.226][m
+[31m- video04 - video02  exp1   -4.246 (1.086) 18 -3.909  .108     -0.351 [-0.732,  0.031][m
+[31m- video04 - video03  exp1  -10.119 (3.308) 18 -3.059  .709     -0.836 [-1.999,  0.327][m
+[31m- video05 - video01  exp1   -7.024 (2.162) 18 -3.249  .468     -0.580 [-1.340,  0.180][m
+[31m- video05 - video02  exp1   -3.220 (0.989) 18 -3.256  .461     -0.266 [-0.614,  0.082][m
+[31m- video05 - video03  exp1   -9.093 (3.026) 18 -3.005  .798     -0.751 [-1.815,  0.312][m
+[31m- video05 - video04  exp1    1.026 (0.509) 18  2.017 1.000      0.085 [-0.094,  0.264][m
+[31m- video06 - video01  exp1   -7.363 (2.400) 18 -3.068  .696     -0.608 [-1.452,  0.235][m
+[31m- video06 - video02  exp1   -3.560 (0.994) 18 -3.582  .224     -0.294 [-0.643,  0.055][m
+[31m- video06 - video03  exp1   -9.433 (3.235) 18 -2.916  .969     -0.779 [-1.917,  0.358][m
+[31m- video06 - video04  exp1    0.686 (0.360) 18  1.905 1.000      0.057 [-0.070,  0.183][m
+[31m- video06 - video05  exp1   -0.340 (0.378) 18 -0.898 1.000     -0.028 [-0.161,  0.105][m
+[31m- video07 - video01  exp1   -8.810 (2.521) 18 -3.494  .272     -0.728 [-1.614,  0.158][m
+[31m- video07 - video02  exp1   -5.007 (0.986) 18 -5.078  .008 **  -0.414 [-0.760, -0.067][m
+[31m- video07 - video03  exp1  -10.880 (3.304) 18 -3.293  .424     -0.899 [-2.060,  0.262][m
+[31m- video07 - video04  exp1   -0.761 (0.280) 18 -2.713 1.000     -0.063 [-0.161,  0.036][m
+[31m- video07 - video05  exp1   -1.787 (0.491) 18 -3.639  .197     -0.148 [-0.320,  0.025][m
+[31m- video07 - video06  ex

@@ -1,4 +1,4 @@
- % run the whole experiment
+% run the whole experiment
 % Linfeng Jiang 2022.12.2
 prompt = {'Creat your game ID:','Do you have any Game Experience before(1 for yes,0 for no):'};
 dlgtitle = 'Watch BaBa';
@@ -11,7 +11,7 @@ try
     % Check if Psychtoolbox is properly installed:
     AssertOpenGL;
     % get the video list and variable to store data
-    video_N =  15; % the number of videos to be watched
+    video_N =  5; % the number of videos to be watched
     [videoList_coarse,videoList_fine,order] = generate_order(video_N); % generate the video list
     [practiceList_coarse,practiceList_fine] = practiceList(3); % generate the prectice List
     splitPoint_1 = zeros(video_N,1000);
@@ -63,7 +63,7 @@ try
         % scaling ration
         scale = 0.3;
         % get the size & location of the image
-        dstRect = [0 0 imgWidth imgHeight] .* scaldwe;
+        dstRect = [0 0 imgWidth imgHeight] .* scale;
         dstRect = CenterRectOnPoint(dstRect, cx, cy);
         % draw the guidence 
         Screen('DrawTexture',window,guidanceIndex,[], dstRect);

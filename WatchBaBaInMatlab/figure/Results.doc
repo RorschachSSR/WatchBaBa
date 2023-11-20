@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset='utf-8'>
+<title></title>
+<style>
+body, pre {font-size: 10.5pt; font-family: Times New Roman;}
+p {margin: 0px;}
+table {border-collapse: collapse; border-spacing: 0px; color: #000000;
+       border-top: 2px solid #000000; border-bottom: 2px solid #000000;}
+table thead th {border-bottom: 1px solid #000000;}
+table th, table td {padding-left: 5px; padding-right: 5px; height: 19px;}
+</style>
+</head>
+
+<body>
+<p></p>
+<table>
+<thead>
+<tr> <th align='left'></th> <th align='right'>Estimate</th> <th align='right'>S.E.</th> <th align='right'>t</th> <th align='right'>p</th> <th align='right'> </th> </tr>
+</thead>
+<tbody>
+<tr> <td align='left'>(Intercept)</td> <td align='right'>0.650</td> <td align='right'>(0.075)</td> <td align='right'>8.683</td> <td align='right'>< .001</td> <td align='right'>***</td> </tr>
+<tr> <td align='left'>hie_align</td> <td align='right'>0.086</td> <td align='right'>(0.044)</td> <td align='right'>1.950</td> <td align='right'>.052</td> <td align='right'>.</td> </tr>
+<tr> <td align='left'>preservation_levelmid</td> <td align='right'>–0.406</td> <td align='right'>(0.080)</td> <td align='right'>–5.072</td> <td align='right'>< .001</td> <td align='right'>***</td> </tr>
+<tr> <td align='left'>preservation_levelhigh</td> <td align='right'>–0.390</td> <td align='right'>(0.083)</td> <td align='right'>–4.713</td> <td align='right'>< .001</td> <td align='right'>***</td> </tr>
+<tr> <td align='left'>timeLag</td> <td align='right'>0.006</td> <td align='right'>(0.004)</td> <td align='right'>1.813</td> <td align='right'>.071</td> <td align='right'>.</td> </tr>
+<tr> <td align='left'>lagTime_ave</td> <td align='right'>0.042</td> <td align='right'>(0.031)</td> <td align='right'>1.363</td> <td align='right'>.174</td> <td align='right'></td> </tr>
+<tr> <td align='left'>levellvl2</td> <td align='right'>0.083</td> <td align='right'>(0.099)</td> <td align='right'>0.840</td> <td align='right'>.402</td> <td align='right'></td> </tr>
+<tr> <td align='left'>levellvl3</td> <td align='right'>0.064</td> <td align='right'>(0.095)</td> <td align='right'>0.680</td> <td align='right'>.497</td> <td align='right'></td> </tr>
+<tr> <td align='left'>levellvl4</td> <td align='right'>0.104</td> <td align='right'>(0.104)</td> <td align='right'>1.001</td> <td align='right'>.318</td> <td align='right'></td> </tr>
+<tr> <td align='left'>levellvl5</td> <td align='right'>–0.101</td> <td align='right'>(0.103)</td> <td align='right'>–0.973</td> <td align='right'>.331</td> <td align='right'></td> </tr>
+<tr> <td align='left'>preservation_levelmid:levellvl2</td> <td align='right'>0.311</td> <td align='right'>(0.113)</td> <td align='right'>2.753</td> <td align='right'>.006</td> <td align='right'>**</td> </tr>
+<tr> <td align='left'>preservation_levelhigh:levellvl2</td> <td align='right'>0.407</td> <td align='right'>(0.115)</td> <td align='right'>3.554</td> <td align='right'>< .001</td> <td align='right'>***</td> </tr>
+<tr> <td align='left'>preservation_levelmid:levellvl3</td> <td align='right'>0.368</td> <td align='right'>(0.112)</td> <td align='right'>3.290</td> <td align='right'>.001</td> <td align='right'>**</td> </tr>
+<tr> <td align='left'>preservation_levelhigh:levellvl3</td> <td align='right'>0.401</td> <td align='right'>(0.114)</td> <td align='right'>3.510</td> <td align='right'>< .001</td> <td align='right'>***</td> </tr>
+<tr> <td align='left'>preservation_levelmid:levellvl4</td> <td align='right'>0.457</td> <td align='right'>(0.113)</td> <td align='right'>4.062</td> <td align='right'>< .001</td> <td align='right'>***</td> </tr>
+<tr> <td align='left'>preservation_levelhigh:levellvl4</td> <td align='right'>–0.181</td> <td align='right'>(0.115)</td> <td align='right'>–1.570</td> <td align='right'>.118</td> <td align='right'></td> </tr>
+<tr> <td align='left'>preservation_levelmid:levellvl5</td> <td align='right'>0.276</td> <td align='right'>(0.113)</td> <td align='right'>2.440</td> <td align='right'>.015</td> <td align='right'>*</td> </tr>
+<tr> <td align='left'>preservation_levelhigh:levellvl5</td> <td align='right'>0.075</td> <td align='right'>(0.113)</td> <td align='right'>0.660</td> <td align='right'>.510</td> <td align='right'></td> </tr>
+<tr> <td align='left'>lagTime_ave:levellvl2</td> <td align='right'>–0.031</td> <td align='right'>(0.037)</td> <td align='right'>–0.828</td> <td align='right'>.408</td> <td align='right'></td> </tr>
+<tr> <td align='left'>lagTime_ave:levellvl3</td> <td align='right'>–0.081</td> <td align='right'>(0.046)</td> <td align='right'>–1.761</td> <td align='right'>.079</td> <td align='right'>.</td> </tr>
+<tr> <td align='left'>lagTime_ave:levellvl4</td> <td align='right'>–0.056</td> <td align='right'>(0.050)</td> <td align='right'>–1.118</td> <td align='right'>.265</td> <td align='right'></td> </tr>
+<tr> <td align='left'>lagTime_ave:levellvl5</td> <td align='right'>–0.100</td> <td align='right'>(0.041)</td> <td align='right'>–2.440</td> <td align='right'>.015</td> <td align='right'>*</td> </tr>
+</tbody>
+</table>
+<p></p>
+</body>
+
+</html>

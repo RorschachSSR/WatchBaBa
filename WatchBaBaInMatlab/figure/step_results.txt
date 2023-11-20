@@ -1,0 +1,115 @@
+Start:  AIC=-776.96
+creaPoint ~ videoTime + order + (hie_align + coarse_seg_agree + 
+    fine_seg_agree + timeLag + lagTime_ave) * level + preservation_level
+
+                         Df Sum of Sq    RSS     AIC
+- hie_align:level         4    0.1033 14.698 -782.95
+- order                   2    0.0087 14.604 -780.79
+- lagTime_ave:level       4    0.2301 14.825 -780.50
+- coarse_seg_agree:level  4    0.3207 14.916 -778.77
+- timeLag:level           4    0.3358 14.931 -778.48
+<none>                                14.595 -776.96
+- fine_seg_agree:level    4    0.4218 15.017 -776.84
+- preservation_level      2    0.3619 14.957 -773.98
+- videoTime               1    3.1704 17.766 -722.94
+
+Step:  AIC=-782.95
+creaPoint ~ videoTime + order + hie_align + coarse_seg_agree + 
+    fine_seg_agree + timeLag + lagTime_ave + level + preservation_level + 
+    coarse_seg_agree:level + fine_seg_agree:level + timeLag:level + 
+    lagTime_ave:level
+
+                         Df Sum of Sq    RSS     AIC
+- lagTime_ave:level       4   0.20411 14.903 -787.02
+- order                   2   0.00802 14.707 -786.80
+- coarse_seg_agree:level  4   0.28951 14.988 -785.39
+- timeLag:level           4   0.33198 15.030 -784.59
+<none>                                14.698 -782.95
+- fine_seg_agree:level    4   0.45868 15.157 -782.19
+- hie_align               1   0.20016 14.899 -781.10
+- preservation_level      2   0.35152 15.050 -780.22
+- videoTime               1   3.11688 17.815 -730.14
+
+Step:  AIC=-787.02
+creaPoint ~ videoTime + order + hie_align + coarse_seg_agree + 
+    fine_seg_agree + timeLag + lagTime_ave + level + preservation_level + 
+    coarse_seg_agree:level + fine_seg_agree:level + timeLag:level
+
+                         Df Sum of Sq    RSS     AIC
+- order                   2    0.0045 14.907 -790.94
+- lagTime_ave             1    0.0019 14.905 -788.98
+- timeLag:level           4    0.4049 15.307 -787.38
+<none>                                14.903 -787.02
+- coarse_seg_agree:level  4    0.4660 15.369 -786.25
+- fine_seg_agree:level    4    0.4780 15.381 -786.02
+- hie_align               1    0.1885 15.091 -785.44
+- preservation_level      2    0.3231 15.226 -784.91
+- videoTime               1    3.3450 18.248 -731.31
+
+Step:  AIC=-790.94
+creaPoint ~ videoTime + hie_align + coarse_seg_agree + fine_seg_agree + 
+    timeLag + lagTime_ave + level + preservation_level + coarse_seg_agree:level + 
+    fine_seg_agree:level + timeLag:level
+
+                         Df Sum of Sq    RSS     AIC
+- lagTime_ave             1    0.0017 14.909 -792.90
+- timeLag:level           4    0.4046 15.312 -791.30
+<none>                                14.907 -790.94
+- coarse_seg_agree:level  4    0.4676 15.375 -790.13
+- fine_seg_agree:level    4    0.4812 15.388 -789.88
+- hie_align               1    0.1930 15.100 -789.27
+- preservation_level      2    0.3202 15.227 -788.88
+- videoTime               1    3.4233 18.330 -734.02
+
+Step:  AIC=-792.9
+creaPoint ~ videoTime + hie_align + coarse_seg_agree + fine_seg_agree + 
+    timeLag + level + preservation_level + coarse_seg_agree:level + 
+    fine_seg_agree:level + timeLag:level
+
+                         Df Sum of Sq    RSS     AIC
+- timeLag:level           4    0.4206 15.329 -792.97
+<none>                                14.909 -792.90
+- coarse_seg_agree:level  4    0.4765 15.385 -791.94
+- fine_seg_agree:level    4    0.4842 15.393 -791.79
+- hie_align               1    0.1919 15.101 -791.26
+- preservation_level      2    0.3191 15.228 -790.87
+- videoTime               1    3.4288 18.338 -735.91
+
+Step:  AIC=-792.97
+creaPoint ~ videoTime + hie_align + coarse_seg_agree + fine_seg_agree + 
+    timeLag + level + preservation_level + coarse_seg_agree:level + 
+    fine_seg_agree:level
+
+                         Df Sum of Sq    RSS     AIC
+- coarse_seg_agree:level  4    0.3390 15.668 -794.74
+- fine_seg_agree:level    4    0.4111 15.741 -793.43
+<none>                                15.329 -792.97
+- hie_align               1    0.1485 15.478 -792.23
+- preservation_level      2    0.3253 15.655 -790.99
+- timeLag                 1    0.2958 15.625 -789.53
+- videoTime               1    3.4669 18.796 -736.87
+
+Step:  AIC=-794.74
+creaPoint ~ videoTime + hie_align + coarse_seg_agree + fine_seg_agree + 
+    timeLag + level + preservation_level + fine_seg_agree:level
+
+                       Df Sum of Sq    RSS     AIC
+- coarse_seg_agree      1    0.0620 15.730 -795.61
+- fine_seg_agree:level  4    0.4386 16.107 -794.87
+<none>                              15.668 -794.74
+- hie_align             1    0.1412 15.810 -794.18
+- preservation_level    2    0.3336 16.002 -792.74
+- timeLag               1    0.3314 16.000 -790.78
+- videoTime             1    3.8623 19.531 -733.94
+
+Step:  AIC=-795.61
+creaPoint ~ videoTime + hie_align + fine_seg_agree + timeLag + 
+    level + preservation_level + fine_seg_agree:level
+
+                       Df Sum of Sq    RSS     AIC
+<none>                              15.730 -795.61
+- fine_seg_agree:level  4    0.4594 16.190 -795.41
+- hie_align             1    0.1280 15.858 -795.30
+- preservation_level    2    0.3294 16.060 -793.71
+- timeLag               1    0.3110 16.041 -792.03
+- videoTime             1    4.0270 19.757 -732.65

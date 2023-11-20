@@ -6,6 +6,9 @@ fine_seg_agree = [];
 allAvgDist = [];
 allexpAvgDist = [];
 creaPoint = [];
+timeLag = [];
+lagTime_sum = [];
+game_order = [];
 
 
 datapath = [cd '\SAVE'];
@@ -20,8 +23,16 @@ for i = 1 : length(filedir)
    fine_seg_agree = [fine_seg_agree;zeros(1,N)];
    allAvgDist = [allAvgDist;zeros(1,N)];
    allexpAvgDist = [allexpAvgDist;zeros(1,N)];
+   timeLag = [timeLag;zeros(1,N)];
+   lagTime_sum = [lagTime_sum;zeros(1,N)];
    [~,creaOrder]=sort(splitPoint.order);
-   creaPoint = [creaPoint;splitPoint.creaPoint(creaOrder)];
+   game_order = [game_order;creaOrder];
+   for j = 1:5
+       [~,mid_order] = sort(game_order(i,((j-1)*3+1):(j*3)));
+       [~,game_order(i,((j-1)*3+1):(j*3))] = sort(mid_order);
+   end
+   creaPoint = [creaPoint;(splitPoint.creaPoint(creaOrder)-min(splitPoint.creaPoint))/(max(splitPoint.creaPoint)-min(splitPoint.creaPoint))];
+   %creaPoint = [creaPoint;splitPoint.creaPoint(creaOrder)];
    for j = 1 : N
        video_no = splitPoint.order(j);
        videotime = splitPoint.time(j);
@@ -36,6 +47,8 @@ for i = 1 : length(filedir)
        fine_seg_agree(i,video_no)=(fine_r-fine_r_min)/(fine_r_max-fine_r_min);
        allAvgDist(i,video_no)=AvgDist(splitPoint.the_coarse(j,1:sum(coarse_split)),splitPoint.the_fine(j,1:sum(fine_split)));
        allexpAvgDist(i,video_no)=exp_AvgDist(splitPoint.the_fine(j,1:sum(fine_split)));
+       timeLag(i,video_no)=sum(splitPoint.timelag(j,:)>0);
+       lagTime_sum(i,video_no)=sum(splitPoint.timelag(j,:));
    end
 end
 save('finalData\creaPoint.mat','creaPoint');
@@ -48,3 +61,9 @@ save('finalData\allAvgDist','allAvgDist');
 save('figure\data\allAvgDist','allAvgDist');
 save('finalData\allexpAvgDist','allexpAvgDist');
 save('figure\data\allexpAvgDist','allexpAvgDist');
+save('finalData\timeLag','timeLag');
+save('figure\data\timeLag','timeLag');
+save('finalData\lagTime_sum','lagTime_sum');
+save('figure\data\lagTime_sum','lagTime_sum');
+save('finalData\game_order','game_order');
+save('figure\data\game_order','game_order');
